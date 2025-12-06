@@ -16,19 +16,22 @@ export default function Auth() {
     setError('');
     setLoading(true);
 
+    const trimmedEmail = email.trim();
+
     try {
       if (isLogin) {
-        const { error } = await signIn(email, password);
+        const { error } = await signIn(trimmedEmail, password);
         if (error) throw error;
       } else {
         if (!fullName.trim()) {
           throw new Error('Full name is required');
         }
-        const { error } = await signUp(email, password, fullName);
+        const { error } = await signUp(trimmedEmail, password, fullName);
         if (error) throw error;
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      console.error('Authentication Error:', err);
+      setError(err instanceof Error ? err.message : 'An error occurred. See console for details.');
     } finally {
       setLoading(false);
     }
