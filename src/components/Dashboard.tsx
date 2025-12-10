@@ -3,7 +3,8 @@ import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import BMICalculator from './BMICalculator';
 import Chatbot from './Chatbot';
-import { LogOut, FileText, Dumbbell, Apple } from 'lucide-react';
+import Inspiration from './Inspiration';
+import { LogOut, FileText, Dumbbell, Apple, MapPin } from 'lucide-react'; // Import MapPin
 import { generateDietPlan, generateWorkoutPlan } from '../utils/planGenerator';
 import { generatePDF } from '../utils/pdfGenerator';
 
@@ -69,6 +70,10 @@ export default function Dashboard() {
     generatePDF(plan, 'Personalized Workout Plan', profile?.full_name || 'User');
   };
 
+  const handleFindGym = () => {
+    window.open('https://www.google.com/maps/search/gyms+near+me', '_blank');
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center">
@@ -93,56 +98,68 @@ export default function Dashboard() {
               <p className="text-sm text-gray-600">Welcome, {profile?.full_name || 'User'}!</p>
             </div>
           </div>
-          <button
-            onClick={signOut}
-            className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
-          >
-            <LogOut className="w-4 h-4" />
-            Sign Out
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={handleFindGym}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            >
+              <MapPin className="w-4 h-4" />
+              Find Gym
+            </button>
+            <button
+              onClick={signOut}
+              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+            >
+              <LogOut className="w-4 h-4" />
+              Sign Out
+            </button>
+          </div>
         </div>
       </nav>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         {!fitnessData ? (
-          <div className="grid lg:grid-cols-2 gap-8">
-            <BMICalculator onDataSaved={loadData} />
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Get Started</h2>
-              <p className="text-gray-600 mb-4">
-                Welcome to Fitness AI! To get your personalized diet and workout plans, please fill out
-                the BMI calculator form.
-              </p>
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <div className="bg-blue-100 p-2 rounded-lg mt-1">
-                    <FileText className="w-5 h-5 text-blue-600" />
+          <div>
+            <div className="grid lg:grid-cols-2 gap-8">
+              <BMICalculator onDataSaved={loadData} />
+              <div className="bg-white rounded-xl shadow-lg p-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">Get Started</h2>
+                <p className="text-gray-600 mb-4">
+                  Welcome to Fitness AI! To get your personalized diet and workout plans, please fill out
+                  the BMI calculator form.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-blue-100 p-2 rounded-lg mt-1">
+                      <FileText className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">Calculate Your BMI</h3>
+                      <p className="text-sm text-gray-600">Enter your height, weight, and age</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Calculate Your BMI</h3>
-                    <p className="text-sm text-gray-600">Enter your height, weight, and age</p>
+                  <div className="flex items-start gap-3">
+                    <div className="bg-green-100 p-2 rounded-lg mt-1">
+                      <Apple className="w-5 h-5 text-green-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">Get Personalized Plans</h3>
+                      <p className="text-sm text-gray-600">Download your diet and workout plans as PDFs</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="bg-green-100 p-2 rounded-lg mt-1">
-                    <Apple className="w-5 h-5 text-green-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Get Personalized Plans</h3>
-                    <p className="text-sm text-gray-600">Download your diet and workout plans as PDFs</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="bg-purple-100 p-2 rounded-lg mt-1">
-                    <Dumbbell className="w-5 h-5 text-purple-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Chat with AI</h3>
-                    <p className="text-sm text-gray-600">Get instant answers to your fitness questions</p>
+                  <div className="flex items-start gap-3">
+                    <div className="bg-purple-100 p-2 rounded-lg mt-1">
+                      <Dumbbell className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">Chat with AI</h3>
+                      <p className="text-sm text-gray-600">Get instant answers to your fitness questions</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <Inspiration />
           </div>
         ) : (
           <div className="space-y-8">
@@ -211,6 +228,8 @@ export default function Dashboard() {
             </div>
 
             <Chatbot />
+
+            <Inspiration />
 
             <div className="text-center">
               <button
