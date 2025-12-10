@@ -4,7 +4,8 @@ import { supabase } from '../lib/supabase';
 import BMICalculator from './BMICalculator';
 import Chatbot from './Chatbot';
 import Inspiration from './Inspiration';
-import { LogOut, FileText, Dumbbell, Apple, MapPin } from 'lucide-react'; // Import MapPin
+import GettingStarted from './GettingStarted';
+import { LogOut, FileText, Dumbbell, Apple, MapPin, Wind, RefreshCw } from 'lucide-react';
 import { generateDietPlan, generateWorkoutPlan } from '../utils/planGenerator';
 import { generatePDF } from '../utils/pdfGenerator';
 
@@ -74,6 +75,10 @@ export default function Dashboard() {
     window.open('https://www.google.com/maps/search/gyms+near+me', '_blank');
   };
 
+  const handleFindYoga = () => {
+    window.open('https://www.google.com/maps/search/yoga+classes+near+me', '_blank');
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center">
@@ -94,7 +99,7 @@ export default function Dashboard() {
               <Dumbbell className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Fitness AI</h1>
+              <h1 className="text-2xl font-bold text-gray-900">AI Powered Fitness Assistance</h1>
               <p className="text-sm text-gray-600">Welcome, {profile?.full_name || 'User'}!</p>
             </div>
           </div>
@@ -107,6 +112,13 @@ export default function Dashboard() {
               Find Gym
             </button>
             <button
+              onClick={handleFindYoga}
+              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
+            >
+              <Wind className="w-4 h-4" />
+              Find Yoga
+            </button>
+            <button
               onClick={signOut}
               className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
             >
@@ -117,48 +129,11 @@ export default function Dashboard() {
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 pt-6 pb-8">
         {!fitnessData ? (
-          <div>
-            <div className="grid lg:grid-cols-2 gap-8">
-              <BMICalculator onDataSaved={loadData} />
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Get Started</h2>
-                <p className="text-gray-600 mb-4">
-                  Welcome to Fitness AI! To get your personalized diet and workout plans, please fill out
-                  the BMI calculator form.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <div className="bg-blue-100 p-2 rounded-lg mt-1">
-                      <FileText className="w-5 h-5 text-blue-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">Calculate Your BMI</h3>
-                      <p className="text-sm text-gray-600">Enter your height, weight, and age</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-green-100 p-2 rounded-lg mt-1">
-                      <Apple className="w-5 h-5 text-green-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">Get Personalized Plans</h3>
-                      <p className="text-sm text-gray-600">Download your diet and workout plans as PDFs</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-purple-100 p-2 rounded-lg mt-1">
-                      <Dumbbell className="w-5 h-5 text-purple-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">Chat with AI</h3>
-                      <p className="text-sm text-gray-600">Get instant answers to your fitness questions</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="space-y-8">
+            <GettingStarted />
+            <BMICalculator onDataSaved={loadData} />
             <Inspiration />
           </div>
         ) : (
@@ -231,11 +206,12 @@ export default function Dashboard() {
 
             <Inspiration />
 
-            <div className="text-center">
+            <div className="text-center pt-4">
               <button
                 onClick={() => setFitnessData(null)}
-                className="text-blue-600 hover:text-blue-700 font-medium"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700 transition"
               >
+                <RefreshCw className="w-4 h-4" />
                 Update Your Fitness Data
               </button>
             </div>
