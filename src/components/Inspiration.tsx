@@ -16,13 +16,13 @@ const quotes = [
 
 export default function Inspiration() {
   return (
-    <div className="mt-12">
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Daily Inspiration</h2>
+    <div className="mt-12 animate-fadeIn">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">Daily Inspiration</h2>
       <div className="grid md:grid-cols-3 gap-8">
         {quotes.map((quote, index) => (
           <div
             key={index}
-            className="relative rounded-xl shadow-lg overflow-hidden h-64 group"
+            className="relative rounded-xl shadow-lg overflow-hidden h-64 group glassmorphism"
           >
             <img
               src={quote.image}

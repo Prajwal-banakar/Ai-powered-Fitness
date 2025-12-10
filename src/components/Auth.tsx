@@ -38,14 +38,14 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 flex items-center justify-center px-4 animate-fadeIn">
+      <div className="max-w-md w-full glassmorphism rounded-2xl shadow-xl p-8">
         <div className="flex flex-col items-center mb-8">
-          <div className="bg-blue-600 p-3 rounded-full mb-4">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-full mb-4 shadow-lg">
             <Dumbbell className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">Fitness AI</h1>
-          <p className="text-gray-600 mt-2">Your Personal Fitness Assistant</p>
+          <h1 className="text-3xl font-bold text-gray-900">AI Powered Fitness</h1>
+          <p className="text-gray-700 mt-2">Your Personal Fitness Assistant</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -59,7 +59,7 @@ export default function Auth() {
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-200 bg-white/70"
                 required={!isLogin}
               />
             </div>
@@ -74,7 +74,7 @@ export default function Auth() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-200 bg-white/70"
               required
             />
           </div>
@@ -88,14 +88,14 @@ export default function Auth() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-200 bg-white/70"
               required
               minLength={6}
             />
           </div>
 
           {error && (
-            <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm">
+            <div className="bg-red-100 text-red-700 px-4 py-3 rounded-lg text-sm border border-red-300">
               {error}
             </div>
           )}
@@ -103,7 +103,7 @@ export default function Auth() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2.5 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-transform transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
           >
             {loading ? 'Please wait...' : isLogin ? 'Sign In' : 'Sign Up'}
           </button>
@@ -115,7 +115,7 @@ export default function Auth() {
               setIsLogin(!isLogin);
               setError('');
             }}
-            className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+            className="text-blue-700 hover:text-purple-700 text-sm font-medium transition duration-200"
           >
             {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
           </button>

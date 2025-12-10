@@ -81,120 +81,117 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
+          <p className="mt-4 text-gray-700">Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50">
-      <nav className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200">
+      <nav className="sticky top-0 z-50 bg-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-600 p-2 rounded-lg">
-              <Dumbbell className="w-6 h-6 text-white" />
+            <div className="bg-blue-50 p-2 rounded-lg">
+              <Dumbbell className="w-6 h-6 text-blue-600" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">AI Powered Fitness Assistance</h1>
-              <p className="text-sm text-gray-600">Welcome, {profile?.full_name || 'User'}!</p>
+              <h1 className="text-xl md:text-2xl font-bold text-gray-900">AI Powered Fitness</h1>
+              <p className="text-xs md:text-sm text-gray-700">Welcome, {profile?.full_name || 'User'}!</p>
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <button
               onClick={handleFindGym}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+              className="hidden sm:flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-transform transform hover:scale-105"
             >
               <MapPin className="w-4 h-4" />
-              Find Gym
+              <span className="hidden md:inline">Find Gym</span>
             </button>
             <button
               onClick={handleFindYoga}
-              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
+              className="hidden sm:flex items-center gap-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-transform transform hover:scale-105"
             >
               <Wind className="w-4 h-4" />
-              Find Yoga
+              <span className="hidden md:inline">Find Yoga</span>
             </button>
             <button
               onClick={signOut}
-              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+              className="flex items-center gap-2 px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-transform transform hover:scale-105"
             >
               <LogOut className="w-4 h-4" />
-              Sign Out
             </button>
           </div>
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-4 pt-6 pb-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {!fitnessData ? (
-          <div className="space-y-8">
+          <div className="space-y-8 animate-fadeIn">
             <GettingStarted />
             <BMICalculator onDataSaved={loadData} />
             <Inspiration />
           </div>
         ) : (
-          <div className="space-y-8">
-            <div className="bg-white rounded-xl shadow-lg p-6">
+          <div className="space-y-8 animate-fadeIn">
+            <div className="glassmorphism rounded-xl shadow-lg p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Your Fitness Profile</h2>
-              <div className="grid md:grid-cols-4 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600 mb-1">BMI</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-white/50 p-4 rounded-lg text-center transition-transform transform hover:scale-105">
+                  <p className="text-sm text-gray-700 mb-1">BMI</p>
                   <p className="text-2xl font-bold text-blue-600">{fitnessData.bmi.toFixed(1)}</p>
                 </div>
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600 mb-1">Weight</p>
+                <div className="bg-white/50 p-4 rounded-lg text-center transition-transform transform hover:scale-105">
+                  <p className="text-sm text-gray-700 mb-1">Weight</p>
                   <p className="text-2xl font-bold text-green-600">{fitnessData.weight} kg</p>
                 </div>
-                <div className="bg-purple-50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600 mb-1">Height</p>
+                <div className="bg-white/50 p-4 rounded-lg text-center transition-transform transform hover:scale-105">
+                  <p className="text-sm text-gray-700 mb-1">Height</p>
                   <p className="text-2xl font-bold text-purple-600">{fitnessData.height} cm</p>
                 </div>
-                <div className="bg-orange-50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600 mb-1">Age</p>
+                <div className="bg-white/50 p-4 rounded-lg text-center transition-transform transform hover:scale-105">
+                  <p className="text-sm text-gray-700 mb-1">Age</p>
                   <p className="text-2xl font-bold text-orange-600">{fitnessData.age} years</p>
                 </div>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl shadow-lg p-6">
+              <div className="glassmorphism rounded-xl shadow-lg p-6 transition-transform transform hover:-translate-y-1">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-green-100 p-2 rounded-lg">
                     <Apple className="w-6 h-6 text-green-600" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">Diet Plan</h3>
                 </div>
-                <p className="text-gray-600 mb-4">
-                  Get your personalized diet plan based on your BMI and fitness goals. Includes meal
-                  plans, calorie targets, and nutritional guidelines.
+                <p className="text-gray-700 mb-4">
+                  Get your personalized diet plan based on your BMI and fitness goals.
                 </p>
                 <button
                   onClick={handleDownloadDietPlan}
-                  className="w-full bg-green-600 text-white py-2.5 rounded-lg font-medium hover:bg-green-700 transition flex items-center justify-center gap-2"
+                  className="w-full bg-green-600 text-white py-2.5 rounded-lg font-medium hover:bg-green-700 transition-transform transform hover:scale-105 flex items-center justify-center gap-2"
                 >
                   <FileText className="w-5 h-5" />
                   Download Diet Plan
                 </button>
               </div>
 
-              <div className="bg-white rounded-xl shadow-lg p-6">
+              <div className="glassmorphism rounded-xl shadow-lg p-6 transition-transform transform hover:-translate-y-1">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-orange-100 p-2 rounded-lg">
                     <Dumbbell className="w-6 h-6 text-orange-600" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">Workout Plan</h3>
                 </div>
-                <p className="text-gray-600 mb-4">
-                  Get your personalized workout plan tailored to your fitness level. Includes weekly
-                  schedules, exercises, and progression guidelines.
+                <p className="text-gray-700 mb-4">
+                  Get your personalized workout plan tailored to your fitness level.
                 </p>
                 <button
                   onClick={handleDownloadWorkoutPlan}
-                  className="w-full bg-orange-600 text-white py-2.5 rounded-lg font-medium hover:bg-orange-700 transition flex items-center justify-center gap-2"
+                  className="w-full bg-orange-600 text-white py-2.5 rounded-lg font-medium hover:bg-orange-700 transition-transform transform hover:scale-105 flex items-center justify-center gap-2"
                 >
                   <FileText className="w-5 h-5" />
                   Download Workout Plan
@@ -209,7 +206,7 @@ export default function Dashboard() {
             <div className="text-center pt-4">
               <button
                 onClick={() => setFitnessData(null)}
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700 transition"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-800 transition-transform transform hover:scale-105"
               >
                 <RefreshCw className="w-4 h-4" />
                 Update Your Fitness Data
@@ -217,7 +214,7 @@ export default function Dashboard() {
             </div>
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

@@ -33,33 +33,33 @@ const features = [
 
 export default function GettingStarted() {
   return (
-    <div className="bg-white rounded-xl shadow-lg p-8 mt-8">
-      <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">Welcome to Fitness AI</h2>
-      <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+    <div className="glassmorphism rounded-xl shadow-lg p-6 md:p-8 animate-fadeIn">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Welcome to AI Powered Fitness</h2>
+      <p className="text-center text-gray-700 mb-10 md:mb-12 max-w-3xl mx-auto text-lg">
         Your all-in-one platform to kickstart and maintain your fitness journey. Here’s how you can get the most out of our features.
       </p>
-      <div className="space-y-12">
+      <div className="space-y-12 md:space-y-16">
         {features.map((feature, index) => (
           <div
             key={feature.title}
-            className={`flex flex-col md:flex-row gap-8 items-center ${
+            className={`flex flex-col md:flex-row gap-6 md:gap-10 items-center ${
               index % 2 === 1 ? 'md:flex-row-reverse' : ''
             }`}
           >
-            <div className="w-full md:w-1/2">
-              <div className="flex items-center gap-3 mb-3">
-                <div className={`bg-${feature.color}-100 p-2 rounded-lg`}>
-                  <feature.icon className={`w-6 h-6 text-${feature.color}-600`} />
+            <div className="w-full md:w-1/2 text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-3">
+                <div className={`bg-${feature.color}-100 p-3 rounded-lg shadow-md`}>
+                  <feature.icon className={`w-7 h-7 text-${feature.color}-600`} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">{feature.title}</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900">{feature.title}</h3>
               </div>
-              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              <p className="text-gray-700 leading-relaxed text-base md:text-lg">{feature.description}</p>
             </div>
             <div className="w-full md:w-1/2">
               <img
                 src={feature.image}
                 alt={feature.title}
-                className="rounded-lg shadow-md object-cover h-64 w-full"
+                className="rounded-xl shadow-lg object-cover h-48 md:h-56 w-full transition-transform transform hover:scale-105 duration-300"
               />
             </div>
           </div>

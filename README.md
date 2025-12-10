@@ -10,6 +10,7 @@ Fitness AI is a modern, all-in-one web application designed to be your personal 
 - **AI Chatbot**: A powerful, integrated chatbot powered by Groq that can answer a wide range of questions on any topic.
 - **Inspirational Content**: A beautiful section displaying motivational fitness quotes and images to keep users inspired.
 - **Find Nearby Gyms**: A convenient link that opens Google Maps to show gyms near the user's location.
+- **Find Nearby Yoga Classes**: A convenient link that opens Google Maps to show yoga classes near the user's location.
 
 ## Tech Stack
 

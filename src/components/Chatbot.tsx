@@ -52,7 +52,7 @@ export default function Chatbot() {
       }
       const chatCompletion = await groq.chat.completions.create({
         messages: [{ role: 'user', content: messageToSend }],
-        model: 'meta-llama/llama-4-scout-17b-16e-instruct', // Using the exact model name from your account
+        model: 'meta-llama/llama-4-scout-17b-16e-instruct',
       });
 
       const response = chatCompletion.choices[0]?.message?.content || 'Sorry, I could not get a response.';
@@ -90,9 +90,9 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg flex flex-col h-[600px]">
-      <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white p-4 rounded-t-xl flex items-center gap-3">
-        <div className="bg-white/20 p-2 rounded-lg">
+    <div className="glassmorphism rounded-xl shadow-lg flex flex-col h-[600px] animate-fadeIn">
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-t-xl flex items-center gap-3 shadow-md">
+        <div className="bg-white/30 p-2 rounded-lg">
           <MessageCircle className="w-6 h-6" />
         </div>
         <div>
@@ -101,28 +101,28 @@ export default function Chatbot() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
         {messages.map((message) => (
           <div
             key={message.id}
             className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             {message.role === 'assistant' && (
-              <div className="bg-blue-100 p-2 rounded-full h-fit">
+              <div className="bg-blue-100 p-2 rounded-full h-fit shadow-sm">
                 <Bot className="w-5 h-5 text-blue-600" />
               </div>
             )}
             <div
-              className={`max-w-[75%] p-3 rounded-lg ${
+              className={`max-w-[75%] p-3 rounded-lg shadow-md ${
                 message.role === 'user'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-900'
+                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
+                  : 'bg-white/70 text-gray-900'
               }`}
             >
               <p className="text-sm leading-relaxed">{message.content}</p>
             </div>
             {message.role === 'user' && (
-              <div className="bg-blue-600 p-2 rounded-full h-fit">
+              <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-2 rounded-full h-fit shadow-sm">
                 <User className="w-5 h-5 text-white" />
               </div>
             )}
@@ -130,10 +130,10 @@ export default function Chatbot() {
         ))}
         {loading && (
           <div className="flex gap-3 justify-start">
-            <div className="bg-blue-100 p-2 rounded-full h-fit">
+            <div className="bg-blue-100 p-2 rounded-full h-fit shadow-sm">
               <Bot className="w-5 h-5 text-blue-600" />
             </div>
-            <div className="bg-gray-100 p-3 rounded-lg">
+            <div className="bg-white/70 p-3 rounded-lg shadow-md">
               <div className="flex gap-1">
                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
@@ -146,7 +146,7 @@ export default function Chatbot() {
       </div>
 
       {error ? (
-        <div className="p-4 border-t border-gray-200 text-center text-red-600 bg-red-50">
+        <div className="p-4 border-t border-gray-200 text-center text-red-600 bg-red-50 rounded-b-xl">
           <div className="flex items-center justify-center gap-2">
             <AlertTriangle className="w-5 h-5" />
             <p className="font-medium">Chatbot Error</p>
@@ -154,7 +154,7 @@ export default function Chatbot() {
           <p className="text-sm mt-1">{error}</p>
         </div>
       ) : (
-        <div className="p-4 border-t border-gray-200">
+        <div className="p-4 border-t border-gray-200 rounded-b-xl bg-white/70">
           <div className="flex gap-2">
             <input
               type="text"
@@ -162,13 +162,13 @@ export default function Chatbot() {
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Ask me anything..."
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-200 bg-white/80"
               disabled={loading}
             />
             <button
               onClick={handleSend}
               disabled={loading || !input.trim()}
-              className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-transform transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
             >
               <Send className="w-5 h-5" />
             </button>
