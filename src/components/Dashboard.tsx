@@ -29,6 +29,11 @@ export default function Dashboard() {
   const [fitnessData, setFitnessData] = useState<FitnessData | null>(null);
   const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    // Scroll to top with a small delay
+    setTimeout(() => window.scrollTo(0, 0), 100);
+  }, [fitnessData]);
+
   const loadData = async () => {
     try {
       const { data: profileData } = await supabase
@@ -130,13 +135,13 @@ export default function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {!fitnessData ? (
-          <div className="space-y-8 animate-fadeIn">
+          <div className="space-y-8">
             <GettingStarted />
             <BMICalculator onDataSaved={loadData} />
             <Inspiration />
           </div>
         ) : (
-          <div className="space-y-8 animate-fadeIn">
+          <div className="space-y-8">
             <div className="glassmorphism rounded-xl shadow-lg p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Your Fitness Profile</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -159,43 +164,47 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="glassmorphism rounded-xl shadow-lg p-6 transition-transform transform hover:-translate-y-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="bg-green-100 p-2 rounded-lg">
-                    <Apple className="w-6 h-6 text-green-600" />
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="glassmorphism rounded-xl shadow-lg overflow-hidden group h-full flex flex-col bg-gradient-to-br from-green-50 to-emerald-50 border border-green-100">
+                <div className="relative p-8 flex-1 flex flex-col">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="bg-green-100 p-3 rounded-lg shadow-md">
+                      <Apple className="w-8 h-8 text-green-600" />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900">Diet Plan</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Diet Plan</h3>
+                  <p className="text-gray-700 text-lg mb-8 flex-1 leading-relaxed">
+                    Unlock a healthier you with a diet plan tailored to your unique needs. Our AI analyzes your fitness data to create a balanced and effective meal plan.
+                  </p>
+                  <button
+                    onClick={handleDownloadDietPlan}
+                    className="w-full bg-green-600 text-white py-3.5 rounded-lg font-bold text-lg hover:bg-green-700 transition-transform transform hover:scale-105 flex items-center justify-center gap-3 shadow-lg"
+                  >
+                    <FileText className="w-6 h-6" />
+                    Download Diet Plan
+                  </button>
                 </div>
-                <p className="text-gray-700 mb-4">
-                  Get your personalized diet plan based on your BMI and fitness goals.
-                </p>
-                <button
-                  onClick={handleDownloadDietPlan}
-                  className="w-full bg-green-600 text-white py-2.5 rounded-lg font-medium hover:bg-green-700 transition-transform transform hover:scale-105 flex items-center justify-center gap-2"
-                >
-                  <FileText className="w-5 h-5" />
-                  Download Diet Plan
-                </button>
               </div>
 
-              <div className="glassmorphism rounded-xl shadow-lg p-6 transition-transform transform hover:-translate-y-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="bg-orange-100 p-2 rounded-lg">
-                    <Dumbbell className="w-6 h-6 text-orange-600" />
+              <div className="glassmorphism rounded-xl shadow-lg overflow-hidden group h-full flex flex-col bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-100">
+                <div className="relative p-8 flex-1 flex flex-col">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="bg-orange-100 p-3 rounded-lg shadow-md">
+                      <Dumbbell className="w-8 h-8 text-orange-600" />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900">Workout Plan</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Workout Plan</h3>
+                  <p className="text-gray-700 text-lg mb-8 flex-1 leading-relaxed">
+                    Get ready to sweat with a workout plan designed just for you. Our AI crafts a routine that matches your fitness level and goals.
+                  </p>
+                  <button
+                    onClick={handleDownloadWorkoutPlan}
+                    className="w-full bg-orange-600 text-white py-3.5 rounded-lg font-bold text-lg hover:bg-orange-700 transition-transform transform hover:scale-105 flex items-center justify-center gap-3 shadow-lg"
+                  >
+                    <FileText className="w-6 h-6" />
+                    Download Workout Plan
+                  </button>
                 </div>
-                <p className="text-gray-700 mb-4">
-                  Get your personalized workout plan tailored to your fitness level.
-                </p>
-                <button
-                  onClick={handleDownloadWorkoutPlan}
-                  className="w-full bg-orange-600 text-white py-2.5 rounded-lg font-medium hover:bg-orange-700 transition-transform transform hover:scale-105 flex items-center justify-center gap-2"
-                >
-                  <FileText className="w-5 h-5" />
-                  Download Workout Plan
-                </button>
               </div>
             </div>
 

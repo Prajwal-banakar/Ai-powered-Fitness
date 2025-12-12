@@ -38,14 +38,14 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 flex items-center justify-center px-4 animate-fadeIn">
-      <div className="max-w-md w-full glassmorphism rounded-2xl shadow-xl p-8">
+    <div className="min-h-screen flex items-center justify-center px-4 animate-fadeIn">
+      <div className="max-w-md w-full glassmorphism rounded-2xl shadow-xl p-8 animate-scaleIn">
         <div className="flex flex-col items-center mb-8">
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-full mb-4 shadow-lg">
             <Dumbbell className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">AI Powered Fitness</h1>
-          <p className="text-gray-700 mt-2">Your Personal Fitness Assistant</p>
+          <h1 className="text-4xl font-bold title-gradient mb-2">{isLogin ? 'Welcome Back!' : 'Get Started'}</h1>
+          <p className="text-gray-600 mt-2 text-center">{isLogin ? 'Sign in to access your personalized fitness dashboard.' : 'Create an account to begin your journey with our AI-powered fitness assistant.'}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -95,7 +95,7 @@ export default function Auth() {
           </div>
 
           {error && (
-            <div className="bg-red-100 text-red-700 px-4 py-3 rounded-lg text-sm border border-red-300">
+            <div className="bg-red-100 text-red-700 px-4 py-3 rounded-lg text-sm border border-red-300 animate-fadeIn">
               {error}
             </div>
           )}

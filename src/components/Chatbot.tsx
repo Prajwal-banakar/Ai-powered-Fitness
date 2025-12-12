@@ -21,15 +21,18 @@ export default function Chatbot() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(groqInitializationError);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messageContainerRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const isInitialMount = useRef(true);
 
   useEffect(() => {
-    scrollToBottom();
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      if (messageContainerRef.current) {
+        messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+      }
+    }
   }, [messages]);
 
   const handleSend = async () => {
@@ -101,7 +104,7 @@ export default function Chatbot() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+      <div ref={messageContainerRef} className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -142,7 +145,6 @@ export default function Chatbot() {
             </div>
           </div>
         )}
-        <div ref={messagesEndRef} />
       </div>
 
       {error ? (
@@ -162,7 +164,7 @@ export default function Chatbot() {
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Ask me anything..."
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-200 bg-white/80"
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg outline-none transition duration-200 bg-white/80"
               disabled={loading}
             />
             <button

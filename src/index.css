@@ -12,6 +12,9 @@
   .glassmorphism {
     @apply bg-white/40 backdrop-blur-lg border border-white/20;
   }
+  .title-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
+  }
 }
 
 @layer utilities {
@@ -22,4 +25,19 @@
   .animate-fadeIn {
     animation: fadeIn 0.5s ease-out forwards;
   }
+
+  @keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .animate-scaleIn {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(199, 210, 254, 0.3), transparent 30%),
+    radial-gradient(circle at 85% 30%, rgba(224, 199, 254, 0.3), transparent 30%);
+  background-color: #f9fafb;
 }

@@ -1,9 +1,15 @@
+import { useEffect } from 'react';
 import { useAuth } from './contexts/AuthContext';
 import Auth from './components/Auth';
 import Dashboard from './components/Dashboard';
 
 function App() {
   const { user, loading } = useAuth();
+
+  useEffect(() => {
+    // Scroll to top when the user state changes (on login/logout)
+    window.scrollTo(0, 0);
+  }, [user]);
 
   if (loading) {
     return (
