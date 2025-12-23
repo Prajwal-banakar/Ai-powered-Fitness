@@ -210,8 +210,6 @@ export default function Dashboard() {
 
             <Chatbot />
 
-            <Inspiration />
-
             <div className="text-center pt-4">
               <button
                 onClick={() => setFitnessData(null)}

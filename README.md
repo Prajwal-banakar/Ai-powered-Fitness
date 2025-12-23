@@ -14,8 +14,8 @@ Before you begin, ensure you have the following installed:
 1.  **Clone the repository:**
 
     ```bash
-    git clone <your-repo-url>
-    cd <your-repo-name>
+    git clone https://github.com/Prajwal-banakar/Ai-powered-Fitness
+    cd Ai-powered-Fitness
     ```
 
 2.  **Install dependencies:**
