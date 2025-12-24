@@ -1,6 +1,37 @@
 # AI Powered Fitness App
 
-This is a React and Vite-based web application that provides personalized fitness and diet plans using AI. It integrates with Supabase for the database and Groq for the AI chat functionality.
+An intelligent, all-in-one fitness companion designed to help users achieve their health goals through personalized AI-generated plans. This web application leverages the power of Artificial Intelligence to create custom diet and workout routines based on individual user data.
+
+## 🚀 Features
+
+*   **Personalized Fitness Profile:**
+    *   **BMI Calculator:** Instantly calculate your Body Mass Index (BMI) to understand your current health status.
+    *   **Data Tracking:** Securely store and update your height, weight, and age to track progress over time.
+
+*   **AI-Generated Plans:**
+    *   **Custom Diet Plans:** Receive tailored meal plans that align with your fitness goals and dietary preferences.
+    *   **Custom Workout Routines:** Get personalized exercise schedules designed for your fitness level.
+    *   **PDF Downloads:** Easily download your diet and workout plans as PDF files for offline access.
+
+*   **AI Chat Assistant:**
+    *   **24/7 Support:** Interact with an intelligent chatbot powered by Groq AI to ask questions about fitness, nutrition, and health.
+
+*   **Location Services:**
+    *   **Find Nearby Gyms & Yoga Classes:** Integrated map search to help you discover fitness centers and yoga studios in your vicinity.
+
+*   **User Authentication:**
+    *   Secure Sign-Up and Login functionality powered by Supabase.
+
+*   **Responsive Design:**
+    *   A modern, glassmorphism-inspired UI that works seamlessly across desktop and mobile devices.
+
+## 🛠️ Tech Stack
+
+*   **Frontend:** React, TypeScript, Vite, Tailwind CSS
+*   **Backend / Database:** Supabase (PostgreSQL, Auth)
+*   **AI Integration:** Groq SDK (LLM for Chatbot), Google Generative AI (Gemini)
+*   **Icons:** Lucide React
+*   **PDF Generation:** jsPDF
 
 ## Prerequisites
 
