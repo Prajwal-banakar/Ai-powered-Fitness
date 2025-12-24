@@ -5,7 +5,7 @@ import BMICalculator from './BMICalculator';
 import Chatbot from './Chatbot';
 import GettingStarted from './GettingStarted';
 import Contact from './Contact';
-import { LogOut, FileText, Dumbbell, Apple, MapPin, Wind, RefreshCw, Phone } from 'lucide-react';
+import { LogOut, FileText, Dumbbell, Apple, MapPin, Wind, RefreshCw, Phone, User } from 'lucide-react';
 import { generateDietPlan, generateWorkoutPlan } from '../utils/planGenerator';
 import { generatePDF } from '../utils/pdfGenerator';
 
@@ -36,6 +36,7 @@ export default function Dashboard() {
   }, [fitnessData, showContact]);
 
   const loadData = async () => {
+    setLoading(true);
     try {
       const { data: profileData } = await supabase
         .from('profiles')
@@ -129,10 +130,12 @@ export default function Dashboard() {
               <span className="hidden md:inline">Find Yoga</span>
             </button>
             <button
-              onClick={signOut}
-              className="flex items-center gap-2 px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-transform transform hover:scale-105"
+              onClick={loadData}
+              className="flex items-center gap-2 px-3 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105"
+              title="My Profile"
             >
-              <LogOut className="w-4 h-4" />
+              <User className="w-4 h-4" />
+              <span className="hidden md:inline">Profile</span>
             </button>
           </div>
         </div>
@@ -214,13 +217,20 @@ export default function Dashboard() {
 
             <Chatbot />
 
-            <div className="text-center pt-4">
+            <div className="text-center pt-4 flex justify-center gap-4">
               <button
                 onClick={() => setFitnessData(null)}
                 className="inline-flex items-center gap-2 px-6 py-2.5 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-800 transition-transform transform hover:scale-105"
               >
                 <RefreshCw className="w-4 h-4" />
                 Update Your Fitness Data
+              </button>
+              <button
+                onClick={signOut}
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-transform transform hover:scale-105"
+              >
+                <LogOut className="w-4 h-4" />
+                Sign Out
               </button>
             </div>
           </div>
