@@ -3,9 +3,9 @@ import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import BMICalculator from './BMICalculator';
 import Chatbot from './Chatbot';
-import Inspiration from './Inspiration';
 import GettingStarted from './GettingStarted';
-import { LogOut, FileText, Dumbbell, Apple, MapPin, Wind, RefreshCw } from 'lucide-react';
+import Contact from './Contact';
+import { LogOut, FileText, Dumbbell, Apple, MapPin, Wind, RefreshCw, Phone } from 'lucide-react';
 import { generateDietPlan, generateWorkoutPlan } from '../utils/planGenerator';
 import { generatePDF } from '../utils/pdfGenerator';
 
@@ -28,11 +28,12 @@ export default function Dashboard() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [fitnessData, setFitnessData] = useState<FitnessData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showContact, setShowContact] = useState(false);
 
   useEffect(() => {
     // Scroll to top with a small delay
     setTimeout(() => window.scrollTo(0, 0), 100);
-  }, [fitnessData]);
+  }, [fitnessData, showContact]);
 
   const loadData = async () => {
     try {
@@ -95,8 +96,12 @@ export default function Dashboard() {
     );
   }
 
+  if (showContact) {
+    return <Contact onBack={() => setShowContact(false)} />;
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 relative">
       <nav className="sticky top-0 z-50 bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
           <div className="flex items-center gap-3">
@@ -138,7 +143,6 @@ export default function Dashboard() {
           <div className="space-y-8">
             <GettingStarted />
             <BMICalculator onDataSaved={loadData} />
-            <Inspiration />
           </div>
         ) : (
           <div className="space-y-8">
@@ -222,6 +226,14 @@ export default function Dashboard() {
           </div>
         )}
       </main>
+
+      <button
+        onClick={() => setShowContact(true)}
+        className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-110 z-50"
+        title="Contact Us"
+      >
+        <Phone className="w-6 h-6" />
+      </button>
     </div>
   );
 }
