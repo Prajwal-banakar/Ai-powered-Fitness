@@ -2,6 +2,11 @@
 
 An intelligent, all-in-one fitness companion designed to help users achieve their health goals through personalized AI-generated plans. This web application leverages the power of Artificial Intelligence to create custom diet and workout routines based on individual user data.
 
+## 🎥 Demo
+
+![Demo Video](path/to/your/demo-video.gif)
+*(Replace `"C:\Users\prajw\OneDrive\Videos\Screen Recordings\demo.mp4"` with the actual path or URL to your demo video or GIF)*
+
 ## 🚀 Features
 
 *   **Personalized Fitness Profile:**
