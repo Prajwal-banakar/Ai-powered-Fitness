@@ -1,6 +1,7 @@
 # AI Powered Fitness App
 
 An intelligent, all-in-one fitness companion designed to help users achieve their health goals through personalized AI-generated plans. This web application leverages the power of Artificial Intelligence to create custom diet and workout routines based on individual user data.
+
 ## 🚀 Features
 
 *   **Personalized Fitness Profile:**
@@ -31,6 +32,19 @@ An intelligent, all-in-one fitness companion designed to help users achieve thei
 *   **AI Integration:** Groq SDK (LLM for Chatbot), Google Generative AI (Gemini)
 *   **Icons:** Lucide React
 *   **PDF Generation:** jsPDF
+
+## 📋 Project Overview (For Demonstration)
+
+### The Problem & Solution
+*   **The Problem:** Many people struggle to start their fitness journey due to expensive personal trainers and generic, ineffective online plans.
+*   **The Solution:** This application acts as a free, AI-driven personal trainer. It uses your unique body metrics (BMI) to instantly generate a personalized roadmap for diet and exercise.
+
+### Key Modules
+1.  **Secure Authentication:** Powered by Supabase for secure user data storage.
+2.  **Smart Onboarding:** Calculates BMI from user inputs (Height, Weight, Age) to categorize health status.
+3.  **AI-Generated Plans:** Creates custom Diet and Workout plans downloadable as PDFs.
+4.  **AI Chat Assistant:** A 24/7 chatbot for instant health and nutrition advice.
+5.  **Location Services:** Finds nearby gyms and yoga classes using Google Maps integration.
 
 ## Prerequisites
 
